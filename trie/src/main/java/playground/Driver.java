@@ -8,5 +8,6 @@ public class Driver {
         prefix.insertPrefix("ryan");
         prefix.insertPrefix("rye");
 
+        prefix.findSubtree("ry");
     }
 }

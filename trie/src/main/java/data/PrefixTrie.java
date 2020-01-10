@@ -55,4 +55,32 @@ public class PrefixTrie {
 
         insertPrefix(phrase,newNode,index +1  );
     }
+
+    /**
+     * Find the node that begins the end of the input prefix
+     * @param prefix a prefix from which we want to find out all the strings
+     * @return
+     *
+     * Ultimately allows aus to recursively search for all the words that match the given prefix
+     *
+     * Deapth first search
+     */
+    public TrieNode findSubtree(String prefix){
+        return findSubtree(root,prefix,0);
+    }
+
+    private TrieNode findSubtree(TrieNode currNode,String prefix, int index){
+        if(prefix.length() == index || prefix.length() == 0){
+            return currNode;
+        }
+        TrieNode tmpNode = currNode.children.get(prefix.charAt(index));
+        if(tmpNode == null ){
+            return null;
+        }
+
+        return findSubtree(tmpNode,prefix,index+1);
+    }
+
+   
+
 }
