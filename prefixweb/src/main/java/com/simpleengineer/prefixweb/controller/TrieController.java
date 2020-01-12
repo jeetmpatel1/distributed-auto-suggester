@@ -2,6 +2,7 @@ package com.simpleengineer.prefixweb.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.simpleengineer.prefixweb.service.RedisService;
 import com.simpleengineer.prefixweb.service.TrieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,19 +16,25 @@ import java.util.List;
 public class TrieController {
 
     @Autowired
-    private TrieService service;
+    private TrieService trieService;
 
     ObjectMapper mapper = new ObjectMapper();
 
     @GetMapping("/insert/{prefix}")
     public String addPrefix(@PathVariable("prefix") String prefix){
-        service.insertPhrases(prefix);
+        trieService.insertPhrases(prefix);
         return prefix + " was inserted into the trie successfully.";
     }
 
     @GetMapping("/retrieve/{prefix}")
     public String retrievePrefix(@PathVariable("prefix") String prefix) throws JsonProcessingException {
-        List<String> results = service.getMatchingPhrases(prefix);
+        /*
+        * Let's jot tje cacje forst. then if we get a cache miss,
+        * then we want to pull from the tree.
+        * */
+
+
+        List<String> results = trieService.getMatchingPhrases(prefix);
         return mapper.writeValueAsString(results);
     }
 }
