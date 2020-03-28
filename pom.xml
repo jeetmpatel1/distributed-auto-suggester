@@ -5,9 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.simpleengineer</groupId>
-    <artifactId>prefix</artifactId>
+    <artifactId>distributed-auto-suggester</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
+
     <modules>
         <module>trie</module>
     </modules>
