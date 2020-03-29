@@ -28,12 +28,6 @@ public class TrieController {
 
     @GetMapping("/retrieve/{prefix}")
     public String retrievePrefix(@PathVariable("prefix") String prefix) throws JsonProcessingException {
-        /*
-        * Let's jot tje cacje forst. then if we get a cache miss,
-        * then we want to pull from the tree.
-        * */
-
-
         List<String> results = trieService.getMatchingPhrases(prefix);
         return mapper.writeValueAsString(results);
     }

@@ -10,7 +10,7 @@
     <version>1.0</version>
 
     <modules>
-        <module>trie</module>
+        <module>distributed-auto-suggester-trie</module>
     </modules>
 
 </project>
