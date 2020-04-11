@@ -15,7 +15,16 @@
     <version>1.0</version>
     <name>trie-data-structure</name>
     <description>This artifact provides base jar which provides trie related functionalities. </description>
+    <properties>
 
+        <project.deployment.folder.name>distributed-auto-suggester-trie-deployment</project.deployment.folder.name>
+        <project.deployment.folder.dependeciesfolder.name>supported-libs</project.deployment.folder.dependeciesfolder.name>
+        <project.deployment.folder.resourcesfolder.name>config</project.deployment.folder.resourcesfolder.name>
+        <project.resources.build.folder>${project.build.directory}/${project.deployment.folder.name}/${project.deployment.folder.resourcesfolder.name}/</project.resources.build.folder>
+        <project.dependencies.build.folder>${project.build.directory}/${project.deployment.folder.name}/${project.deployment.folder.dependeciesfolder.name}/</project.dependencies.build.folder>
+
+
+    </properties>
     <build>
         <plugins>
             <plugin>
@@ -30,7 +39,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <outputDirectory>${project.build.directory}/trie-data-structure-jar</outputDirectory>
+                    <outputDirectory>${project.build.directory}/${project.deployment.folder.name}</outputDirectory>
                     <excludes>
                         <exclude>**/*.properties</exclude>
                         <exclude>**/*.txt</exclude>
@@ -38,11 +47,11 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>supported-libs/</classpathPrefix>
+                            <classpathPrefix>${project.deployment.folder.dependeciesfolder.name}/</classpathPrefix>
                             <mainClass>src.main.java.playground.Driver</mainClass>
                         </manifest>
                         <manifestEntries>
-                            <Class-Path>config/</Class-Path>
+                            <Class-Path>${project.deployment.folder.resourcesfolder.name}</Class-Path>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -58,7 +67,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/trie-data-structure-jar/supported-libs</outputDirectory>
+                            <outputDirectory>${project.dependencies.build.folder}</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
@@ -78,7 +87,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/trie-data-structure-jar/config</outputDirectory>
+                            <outputDirectory>${project.resources.build.folder}</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/resources</directory>
